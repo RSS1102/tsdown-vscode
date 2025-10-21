@@ -84,7 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
       enableScripts: true,
       retainContextWhenHidden: true,
       localResourceRoots: [
-        vscode.Uri.file(path.join(extensionPath, 'web-resources')),
+  vscode.Uri.file(path.join(extensionPath, 'res')),
         vscode.Uri.file(path.join(extensionPath, 'dist')),
         vscode.Uri.file(workspaceFolder),
       ],

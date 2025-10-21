@@ -103,11 +103,11 @@ const initCherryPanel = () => {
   cherryPanel = vscode.window.createWebviewPanel('cherrymarkdown.preview', currentTitle, vscode.ViewColumn.Two, {
     enableScripts: true,
     retainContextWhenHidden: true,
-    localResourceRoots: [
-      vscode.Uri.file(path.join(extensionPath, 'web-resources')),
-      vscode.Uri.file(path.join(extensionPath, 'dist')),
-      vscode.Uri.file(workspaceFolder),
-    ],
+      localResourceRoots: [
+        vscode.Uri.file(path.join(extensionPath, 'res')),
+        vscode.Uri.file(path.join(extensionPath, 'dist')),
+        vscode.Uri.file(workspaceFolder),
+      ],
   });
   console.log('vscode.env.language', vscode.env.language);
   cherryPanel.webview.html = getWebviewContent(

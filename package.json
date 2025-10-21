@@ -23,8 +23,7 @@
   "files": [
     "LICENSE.md",
     "dist/*",
-    "res/*",
-    "web-resources/*"
+    "res/*"
   ],
   "engines": {
     "vscode": ">=1.105.0"
@@ -60,7 +59,7 @@
       "distro-ubuntu": {
         "description": "cherry-markdown icon",
         "default": {
-          "fontPath": "./web-resources/dist/ch-icon.woff",
+          "fontPath": "./res/dist/ch-icon.woff",
           "fontCharacter": "\\ea28"
         }
       }
