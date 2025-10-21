@@ -1,26 +1,25 @@
 {
-  "publisher": "antfu",
-  "name": "cherry-markdown",
+  "name": "cherry-markdown-vscode-plugin",
   "displayName": "Cherry Markdown",
-  "version": "0.0.0",
-  "private": true,
-  "description": "A markdown previewer powered by cherry-markdown for VSCode",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
-  "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/Tencent/cherry-markdown#readme",
+  "description": "A markdown previewer powered by [cherry-markdown](https://github.com/Tencent/cherry-markdown) for VSCode",
+  "version": "0.1.2",
+  "publisher": "cherryMarkdownPublisher",
+  "license": "Apache-2.0",
+  "keywords": [
+    "markdown",
+    "markdown editor",
+    "markdown preview"
+  ],
+  "l10n": "./l10n",
+  "icon": "favicon.ico",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tencent/cherry-markdown"
+    "url": "https://github.com/Tencent/cherry-markdown.git"
   },
-  "bugs": {
-    "url": "https://github.com/Tencent/cherry-markdown/issues"
-  },
+  "homepage": "https://github.com/Tencent/cherry-markdown",
   "categories": [
     "Other"
   ],
-  "main": "./dist/index.js",
-  "icon": "res/icon.png",
   "files": [
     "LICENSE.md",
     "dist/*",
@@ -33,11 +32,12 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
+  "main": "./dist/index.js",
   "contributes": {
     "commands": [
       {
         "command": "cherrymarkdown.preview",
-        "title": "Preview Markdown With Cherry"
+        "title": "%commands.preview.title%"
       }
     ],
     "menus": {
@@ -56,38 +56,52 @@
         "when": "editorTextFocus && editorLangId == markdown"
       }
     ],
+    "icons": {
+      "distro-ubuntu": {
+        "description": "cherry-markdown icon",
+        "default": {
+          "fontPath": "./web-resources/dist/ch-icon.woff",
+          "fontCharacter": "\\ea28"
+        }
+      }
+    },
     "configuration": {
       "title": "Cherry Markdown",
       "properties": {
         "cherryMarkdown.Usage": {
           "type": "string",
-          "default": "active",
+          "default": "%usage.enum.active%",
           "enum": [
-            "active",
-            "only-manual"
+            "%usage.enum.active%",
+            "%usage.enum.only-manual%"
           ],
-          "description": "Usage mode"
+          "description": "%usage.description%"
         },
         "cherryMarkdown.Theme": {
           "type": "string",
-          "default": "default",
+          "default": "%theme.enum.default%",
           "enum": [
-            "default",
-            "dark",
-            "green",
-            "red"
+            "%theme.enum.default%",
+            "%theme.enum.dark%",
+            "%theme.enum.green%",
+            "%theme.enum.red%"
           ],
-          "description": "Theme"
+          "description": "%theme.description%"
         },
         "cherryMarkdown.UploadType": {
           "type": "string",
-          "default": "None",
+          "default": "%uploadType.enum.None%",
           "enum": [
-            "None",
-            "CustomUploader",
-            "PicGoServer"
+            "%uploadType.enum.None%",
+            "%uploadType.enum.CustomUploader%",
+            "%uploadType.enum.PicGoServer%"
           ],
-          "description": "Upload type"
+          "enumDescriptions": [
+            "%uploadType.enumDescriptions.None%",
+            "%uploadType.enumDescriptions.CustomUploader%",
+            "%uploadType.enumDescriptions.PicGoServer%"
+          ],
+          "description": "%uploadType.description%"
         },
         "cherryMarkdown.CustomUploader": {
           "type": "object",
@@ -102,24 +116,36 @@
             "enable": {
               "type": "boolean",
               "default": false,
-              "description": "Enable custom uploader"
+              "description": "%customUploader.enable.description%"
             },
             "url": {
               "type": "string",
               "default": "",
-              "description": "Upload URL"
+              "description": "%customUploader.url.description%"
             },
             "headers": {
               "type": "object",
               "default": {},
-              "description": "Headers"
+              "description": "%customUploader.headers%",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "default": "",
+                  "description": "%customUploader.headers.key.description%"
+                },
+                "value": {
+                  "type": "string",
+                  "default": "",
+                  "description": "%customUploader.headers.value.description%"
+                }
+              }
             }
           },
-          "description": "Custom uploader config"
+          "description": "%customUploader.description%"
         },
         "cherryMarkdown.PicGoServer": {
           "type": "string",
-          "description": "PicGo server URL",
+          "description": "%picGoServer.description%",
           "default": "http://127.0.0.1:36677/upload"
         },
         "cherryMarkdown.BackfillImageProps": {
@@ -127,13 +153,19 @@
           "items": {
             "type": "string",
             "enum": [
-              "isBorder",
-              "isShadow",
-              "isRadius"
+              "%backfillImageProps.enum.isBorder%",
+              "%backfillImageProps.enum.isShadow%",
+              "%backfillImageProps.enum.isRadius%"
+            ],
+            "description": "Select multiple items",
+            "enumDescriptions": [
+              "%backfillImageProps.enumDescriptions.isBorder%",
+              "%backfillImageProps.enumDescriptions.isShadow%",
+              "%backfillImageProps.enumDescriptions.isRadius%"
             ]
           },
           "default": [],
-          "description": "Backfill image properties"
+          "description": "%backfillImageProps.description%"
         }
       }
     }
@@ -142,11 +174,9 @@
     "build": "tsdown src/index.ts --external vscode",
     "dev": "tsdown src/index.ts --watch --sourcemap --external vscode",
     "prepare": "tsdown --update-meta",
-    "update": "vscode-ext-gen --output src/generated/meta.ts",
     "lint": "eslint .",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "vscode:prepublish": "nr build",
     "release": "bumpp",
     "ext:package": "vsce package --no-dependencies",
     "ext:publish": "vsxpub --no-dependencies"
