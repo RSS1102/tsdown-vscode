@@ -11,7 +11,7 @@
     "markdown preview"
   ],
   "l10n": "./l10n",
-  "icon": "favicon.ico",
+  "icon": "res/favicon.ico",
   "repository": {
     "type": "git",
     "url": "https://github.com/Tencent/cherry-markdown.git"
@@ -27,7 +27,7 @@
     "web-resources/*"
   ],
   "engines": {
-    "vscode": "^1.97.0"
+    "vscode": ">=1.105.0"
   },
   "activationEvents": [
     "onLanguage:markdown"
@@ -173,7 +173,6 @@
   "scripts": {
     "build": "tsdown src/index.ts --external vscode",
     "dev": "tsdown src/index.ts --watch --sourcemap --external vscode",
-    "prepare": "tsdown --update-meta",
     "lint": "eslint .",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
