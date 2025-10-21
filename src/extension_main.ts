@@ -1,4 +1,4 @@
-﻿import * as vscode from 'vscode'
+import * as vscode from 'vscode'
 import * as path from 'path'
 import { getWebviewContent } from './webview'
 import { uploadFileHandler } from './handler/uploadFile'
